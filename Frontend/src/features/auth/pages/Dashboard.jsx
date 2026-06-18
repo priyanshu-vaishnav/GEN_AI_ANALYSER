@@ -56,7 +56,7 @@ export default function Dashboard() {
        
         // Jab component mount ho to GetMe call karo taaki pata chale ki user already logged in hai ya nahi
         const fetchUser = async () => {
-          setLoading(true);
+         
           try {
             const data = await getMe();
             const reportData = await getMyReports()
