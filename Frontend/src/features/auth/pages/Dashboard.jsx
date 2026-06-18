@@ -12,8 +12,7 @@ import "./auth.dashboard.css";
 
 export default function Dashboard() {
     const { handleLogout,user,error,success,loading,setLoading} = useAuth();
-    const {report,setReport} = useApi();
-    const {handleGenerateReport} = useApi();
+    const {handleGenerateReport,getMyReports,report,setReport} = useApi();
     const [selfDescription, setSelfDescription] = useState("");
     const [jobDescription, setJobDescription] = useState("");
     const [resume, setResume] = useState(null);
@@ -60,8 +59,10 @@ export default function Dashboard() {
           setLoading(true);
           try {
             const data = await GetMe();
+            const reports = await getMyReports();
+
             setUser(data); // Agar user logged in hai to uska data set karo
-            setReport(data.reports);
+            setReport(reports);
           } catch (err) {
             setUser(null); // Agar error aaya to user ko null set karo (not authenticated)
           } finally {

@@ -1,4 +1,4 @@
-const interviewReportSchema = require("../models/interviewReport.model.js");
+const interviewReportModel = require("../models/interviewReport.model.js");
 const interviewReportGenerateService = require("../services/api.services.js");
 async function generateInterviewReport(req, res) {
   try {
@@ -39,4 +39,37 @@ async function generateInterviewReport(req, res) {
   }
 }
 
-module.exports = { generateInterviewReport };
+
+async function getUserReports(req,res){
+
+
+
+  try{   
+     const report = await interviewReportModel.find({user:req.userId})
+      
+     if(!report){
+      res.status(200).json({
+        message:"no report found"
+      })
+     }
+     if(report.length >2){
+      res.status(200).json({
+        reports:report
+      })
+     }
+     
+     res.status(200).json({
+      reports:[report],
+      reportLen :report.length
+     })
+    }
+    catch(err)
+{
+  res.status(401).json({
+    message:err.message
+  })
+}
+   
+
+}
+module.exports = { generateInterviewReport ,getUserReports};
