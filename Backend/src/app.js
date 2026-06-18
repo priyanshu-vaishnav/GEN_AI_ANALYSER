@@ -7,7 +7,7 @@ const serviceRoute = require('./routes/interview.routes.js')
 const app = express();
 app.use(cookieParser()) 
 app.use(cors({
-    origin: "https://gen-ai-analyser-nwas.vercel.app/", // Aapke frontend ka exact URL (last me '/' mat lagana)
+    origin: "https://gen-ai-analyser-nwas.vercel.app", // Aapke frontend ka exact URL (last me '/' mat lagana)
     credentials: true,               // Cookies aur headers allow karne ke liye yeh ZAROORI hai
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
