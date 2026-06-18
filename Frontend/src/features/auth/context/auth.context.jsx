@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [report, setReport] = useState(null);
-  
+   const [name ,setName] = useState(null)
 
    const {getMyReports} = useApi();
 
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
         setSuccess,
         report,
         setReport,
-       
+        name,setName
       }}
     >
       {children}
