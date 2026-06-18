@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       try {
         const data = await GetMe();
-        const reports = await getUserReports();
+        const reports = await GetUserReports();
         setUser(data); // Agar user logged in hai to uska data set karo
         setReport(reports);
         setName(data.username);
