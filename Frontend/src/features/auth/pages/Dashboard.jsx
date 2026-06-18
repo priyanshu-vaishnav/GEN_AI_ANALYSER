@@ -18,6 +18,7 @@ export default function Dashboard() {
     const [jobDescription, setJobDescription] = useState("");
     const [resume, setResume] = useState(null);
     const [fileName, setFileName] = useState(""); 
+   
     const Navigate= useNavigate();
 
     function handleFileChange(e) {

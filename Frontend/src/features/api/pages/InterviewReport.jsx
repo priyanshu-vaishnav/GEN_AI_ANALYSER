@@ -66,7 +66,7 @@ export default function InterviewReport() {
       <header className="dashboard-header">
         <div className="header-title">
           <h1>Interview Preparation Dashboard</h1>
-          {user && <p>Welcome back, {user.name || 'User'}!</p>}
+          {user && <p>Welcome back, {user.username || 'User'}!</p>}
           <span className="subtitle">Dynamic analysis based on your profile and target job.</span>
         </div>
         <div className={`score-badge ${getScoreClass(matchScore)}`}>
