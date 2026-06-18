@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { GetMe } from "../../services/auth.api.js";
-import { getMyReports } from "../../api/hooks/api.hooks.js";
+import { useApi } from "../../api/hooks/api.hooks.js";
 import { useEffect } from "react";
 
 export const AuthContext = createContext();
@@ -11,7 +11,9 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [report, setReport] = useState(null);
-   const [name ,setName] = useState(null)
+  
+
+   const {getMyReports} = useApi();
 
   useEffect(() => {
     console.log(report);
