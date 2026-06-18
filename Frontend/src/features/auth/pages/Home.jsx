@@ -13,13 +13,13 @@ export default function Home() {
         <div className="hp-nav-links">
           <a href="#process" className="hp-nav-link">How it works</a>
           <Link to="/Login" className="hp-nav-link">Log in</Link>
-          <Link to="/Register" className="hp-nav-cta">REQUEST CLEARANCE</Link>
+          <Link to="/Register" className="hp-nav-cta">Register</Link>
         </div>
       </nav>
 
       <section className="hp-hero">
         <div>
-          <div className="hp-case-number">CASE FILE // INTERVIEW-001 // OPEN</div>
+        
 
           <h1 className="hp-headline">
             Debrief your interview.<br />
@@ -99,7 +99,7 @@ export default function Home() {
           </div>
           <div className="hp-process-card">
             <div className="hp-process-tag">STEP / ACT</div>
-            <h3>Get the dossier back</h3>
+            <h3>Get the Anaylsis back</h3>
             <p>
               A match score, a skills-gap breakdown, and a day-by-day
               plan that tells you exactly what to fix next.
@@ -112,7 +112,7 @@ export default function Home() {
         <div className="hp-footer-panel">
           <h2>Your next interview deserves a debrief.</h2>
           <p>Open a case file in under a minute. No credit card, no waiting room.</p>
-          <Link to="/Register" className="hp-btn-primary">Open a case file</Link>
+          <Link to="/Register" className="hp-btn-primary">Open To Brief Anaylsis</Link>
         </div>
       </section>
     </div>
