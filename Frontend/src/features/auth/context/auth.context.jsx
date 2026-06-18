@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { GetMe } from "../../services/auth.api.js";
-import { useApi } from "../../api/hooks/api.hooks.js";
+
 import { useEffect } from "react";
 
 export const AuthContext = createContext();
@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [report, setReport] = useState(null);
    const [name ,setName] = useState(null)
 
-   const {getMyReports} = useApi();
+  
 
   useEffect(() => {
     console.log(report);
@@ -23,8 +23,6 @@ export const AuthProvider = ({ children }) => {
       try {
         const data = await GetMe();
 
-          const reports = await getMyReports();
-            setReport(reports);
         setUser(data); // Agar user logged in hai to uska data set karo
        
         setName(data.username);
