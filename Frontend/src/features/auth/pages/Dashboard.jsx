@@ -32,15 +32,17 @@ export default function Dashboard() {
         Navigate("/interviewreport")
     }
 
-    function openReport(e){
-        const clickedId =e.target.innerText;
+    function openReport(clickedId) {
+    // clickedId me ab actual database ki unique ID aayegi (e.g., "65b2f...")
+    const foundReport = report[0].find(item => item._id === clickedId);
     
-
-      const foundReport = report[0].find(item => item._id === clickedId);
-        setReport(foundReport)
-        
-        Navigate("/interviewreport")
+    if (foundReport) {
+        setReport(foundReport);
+        Navigate("/interviewreport");
+    } else {
+        console.log("Report nahi mili!");
     }
+}
     async function handleGenerate() {
         if (!selfDescription || !jobDescription || !resume) {
             alert("Please fill all fields and upload your resume.");
@@ -51,7 +53,7 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
-        console.log(report);
+       
         // Jab component mount ho to GetMe call karo taaki pata chale ki user already logged in hai ya nahi
         const fetchUser = async () => {
           setLoading(true);
@@ -137,12 +139,15 @@ export default function Dashboard() {
 
         <button onClick={goto}>Report</button>
 
-      {
-    // Pehle check karein ki report[0] exist karta hai aur woh array hai
+  {
     report && report[0] && report[0].map((r, i) => (
-        <button key={i} onClick={(e) => openReport(e)} style={{ padding: '10px' }}>
-            {/* r ab seedhe ek object hai, toh r._id use karein */}
-            <div>{r._id}</div>
+        <button 
+            key={r._id} // Pure loop ke liye unique key database ki id ko hi bana dete hain
+            onClick={() => openReport(r._id)} 
+            style={{ padding: '10px', margin: '5px' }}
+        >
+            {/* Div ke andar ab user ko Report 1, Report 2 dikhega */}
+            <div>Report {i + 1}</div>
         </button>
     ))
 }
