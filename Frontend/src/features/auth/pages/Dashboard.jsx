@@ -60,7 +60,6 @@ export default function Dashboard() {
           try {
             const data = await GetMe();
             const reports = await getMyReports();
-
             setUser(data); // Agar user logged in hai to uska data set karo
             setReport(reports);
           } catch (err) {

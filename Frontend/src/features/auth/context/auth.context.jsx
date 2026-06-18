@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const data = await GetMe();
         setUser(data); // Agar user logged in hai to uska data set karo
-        setReport(data.reports);
+      
         setName(data.username);
       } catch (err) {
         setUser(null); // Agar error aaya to user ko null set karo (not authenticated)

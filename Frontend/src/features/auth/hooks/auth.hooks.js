@@ -85,7 +85,7 @@ export const useAuth = () => {
     try {
       const data = await GetMe();
       setUser(data);
-      console.log("User details fetched successfully:", data);
+    
       setSuccess("Refresh successful!");
     } catch (err) {
       setError(err.message);
