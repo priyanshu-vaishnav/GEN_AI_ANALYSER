@@ -8,7 +8,7 @@ export default function Home() {
       <nav className="hp-nav">
         <div className="hp-logo">
           <span className="hp-logo-dot" />
-          MISSION DOSSIER
+        AI ANYLSYER ONLINE
         </div>
         <div className="hp-nav-links">
           <a href="#process" className="hp-nav-link">How it works</a>
