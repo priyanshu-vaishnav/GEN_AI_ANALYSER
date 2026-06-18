@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
         setSuccess,
         report,
         setReport,
-        name,setName
+       
       }}
     >
       {children}
