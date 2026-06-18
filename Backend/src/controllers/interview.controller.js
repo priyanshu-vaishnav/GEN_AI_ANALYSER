@@ -21,7 +21,7 @@ async function generateInterviewReport(req, res) {
       jobDescription,
     });
 
-     const interviewReport = await interviewReportSchema.create({
+     const interviewReport = await interviewReportModel.create({
         
        user:req.userId,
         selfDescription,
