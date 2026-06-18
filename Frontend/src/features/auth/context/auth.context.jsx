@@ -11,12 +11,10 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [report, setReport] = useState(null);
-   const [name ,setName] = useState(null)
-
-  
+  const [name, setName] = useState(null);
 
   useEffect(() => {
-    console.log(report);
+ 
     // Jab component mount ho to GetMe call karo taaki pata chale ki user already logged in hai ya nahi
     const fetchUser = async () => {
       setLoading(true);
@@ -24,7 +22,7 @@ export const AuthProvider = ({ children }) => {
         const data = await GetMe();
 
         setUser(data); // Agar user logged in hai to uska data set karo
-       
+
         setName(data.username);
       } catch (err) {
         setUser(null); // Agar error aaya to user ko null set karo (not authenticated)
@@ -49,7 +47,8 @@ export const AuthProvider = ({ children }) => {
         setSuccess,
         report,
         setReport,
-        name,setName
+        name,
+        setName,
       }}
     >
       {children}
