@@ -1,9 +1,11 @@
 import { createContext, useState } from "react";
 import { GetMe } from "../../services/auth.api.js";
-
 import { useEffect } from "react";
+import { GetUserReports } from "../../services/auth.api.js";
 
 export const AuthContext = createContext();
+
+
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -11,28 +13,28 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [report, setReport] = useState(null);
-  const [name, setName] = useState(null);
+  
 
   useEffect(() => {
- 
-    // Jab component mount ho to GetMe call karo taaki pata chale ki user already logged in hai ya nahi
+   
     const fetchUser = async () => {
       setLoading(true);
       try {
         const data = await GetMe();
+        const reportData = await GetUserReports();
 
-        setUser(data); // Agar user logged in hai to uska data set karo
-
-        setName(data.username);
+        setUser(data); 
+        
+        setReport(reportData)
       } catch (err) {
-        setUser(null); // Agar error aaya to user ko null set karo (not authenticated)
+        setUser(null); 
       } finally {
         setLoading(false);
       }
     };
 
     fetchUser();
-  }, []); // Empty dependency array ka matlab ye effect sirf ek baar chalega jab component mount ho
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -47,8 +49,6 @@ export const AuthProvider = ({ children }) => {
         setSuccess,
         report,
         setReport,
-        name,
-        setName,
       }}
     >
       {children}

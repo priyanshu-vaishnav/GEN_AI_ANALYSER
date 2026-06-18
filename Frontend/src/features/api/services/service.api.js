@@ -28,14 +28,6 @@ export async function GenerateReport({
   }
 }
 
-export async function GetUserReports() {
-  try {
-    const reports = await axios.get(`${API_URL}/service/myreports`, {
-      withCredentials: true,
-    });
 
-    return reports;
-  } catch (err) {
-    throw new Error(err.response?.data?.message);
-  }
-}
+
+

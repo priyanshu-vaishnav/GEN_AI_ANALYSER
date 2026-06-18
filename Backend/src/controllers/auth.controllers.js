@@ -99,10 +99,10 @@ async function getMe(req,res){
     }
     const isAnyReport = await interviewReportModel.find({ user: req.userId });
 
-    res.status(201).json({
+    res.status(200).json({
         username : user.username,
         email :user.email,
-        reports:[isAnyReport]
+     
 
     })
 }
