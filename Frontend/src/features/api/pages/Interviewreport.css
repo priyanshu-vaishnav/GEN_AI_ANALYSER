@@ -1,0 +1,273 @@
+/* Container & Layout */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #0f172a; /* Deep Dark Background */
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #e2e8f0; /* Soft White Text */
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* Header Styling */
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  background: #1e293b; /* Dark Surface */
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #334155;
+}
+
+@media (min-width: 768px) {
+  .dashboard-header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.header-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.header-title p {
+  color: #cbd5e1;
+  font-weight: 500;
+  margin: 4px 0 0 0;
+}
+
+.header-title .subtitle {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* Match Score Badge (Dark-Adapted Glassmorphism) */
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.score-high { color: #4ade80; background: rgba(22, 163, 74, 0.15); border-color: rgba(74, 222, 128, 0.3); }
+.score-med { color: #fbbf24; background: rgba(217, 119, 6, 0.15); border-color: rgba(251, 191, 36, 0.3); }
+.score-low { color: #f87171; background: rgba(220, 38, 38, 0.15); border-color: rgba(248, 113, 113, 0.3); }
+
+.score-num { font-size: 28px; font-weight: 800; }
+.score-label { font-size: 11px; font-weight: 600; text-transform: uppercase; tracking-letter: 0.05em; opacity: 0.9; }
+
+/* Main Sections */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dashboard-section {
+  background: #1e293b; /* Dark Surface */
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid #334155;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-wrapper {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.bg-blue { background: rgba(37, 99, 235, 0.2); color: #60a5fa; }
+.bg-purple { background: rgba(147, 51, 234, 0.2); color: #c084fc; }
+.bg-orange { background: rgba(234, 88, 12, 0.2); color: #fb923c; }
+.bg-green { background: rgba(22, 163, 74, 0.2); color: #4ade80; }
+
+/* Accordion (Questions - Clean Dark Accent) */
+.questions-list { display: flex; flex-direction: column; gap: 12px; }
+
+.accordion-item {
+  border: 1px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111827; /* Inset dark container */
+}
+
+.accordion-header {
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #cbd5e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.accordion-header:hover { background: #1f2937; }
+.question-text { line-height: 1.6; text-align: left; }
+.arrow-icon { font-size: 10px; transition: transform 0.2s; color: #64748b; }
+.arrow-icon.open { transform: rotate(180deg); color: #f8fafc; }
+
+.accordion-body {
+  padding: 16px;
+  background: #1e293b; /* Surface pop for internal content */
+  border-top: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meta-block { display: flex; flex-direction: column; gap: 4px; }
+.meta-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.label-purple { color: #c084fc; }
+.label-green { color: #4ade80; }
+.meta-desc { font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6; }
+.whitespace-pre { white-space: pre-line; color: #e2e8f0; }
+
+/* Skills Gap Block (Subtle Dark Warning Tone) */
+.skills-list { display: flex; flex-direction: column; gap: 12px; }
+.skill-card {
+  padding: 16px;
+  background: rgba(234, 88, 12, 0.05);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.skill-info h4 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin: 0; }
+.skill-info p { font-size: 12px; color: #64748b; margin: 4px 0 0 0; }
+
+.intensity-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+.int-High { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+.int-Medium { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.int-Low { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+/* Right Column (Sticky Plan) */
+.sticky-sidebar {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .sticky-sidebar {
+    position: sticky;
+    top: 24px;
+  }
+}
+
+.plan-subtitle { font-size: 12px; color: #64748b; margin: 4px 0 16px 0; }
+.plan-list { display: flex; flex-direction: column; gap: 16px; }
+
+.plan-card {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  background: #111827;
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.plan-card:hover { border-color: #475569; background: #172554; /* Subtle dark blue tint on hover */ }
+.plan-card.completed {
+  background: rgba(22, 163, 74, 0.08);
+  border-color: rgba(74, 222, 128, 0.3);
+  opacity: 0.65;
+}
+
+.plan-checkbox {
+  margin-top: 4px;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  accent-color: #22c55e; /* Direct green checkbox matching dark dashboard */
+}
+
+.plan-content { flex: 1; text-align: left;}
+.day-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; }
+.completed .day-tag { color: #4ade80; }
+.focus-title { font-size: 14px; font-weight: 600; color: #e2e8f0; margin: 2px 0 0 0; }
+.completed .focus-title { text-decoration: line-through; color: #475569; }
+
+.tasks-list {
+  margin: 8px 0 0 0;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* General Empty State */
+.italic-empty { font-size: 14px; color: #475569; font-style: italic; margin: 0; }
+
+/* Loading & Error Screens */
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0f172a;
+}
+.spinner {
+  height: 40px;
+  width: 40px;
+  border: 3px solid #334155;
+  border-bottom-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.error-box {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  color: #f87171;
+  padding: 16px 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}

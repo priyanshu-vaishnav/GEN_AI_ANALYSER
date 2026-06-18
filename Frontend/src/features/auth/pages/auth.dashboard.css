@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background-color: #0f0f0f;
+}
+
+.card1{
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 540px;
+}
+
+.logo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #EEEDFE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon i {
+    font-size: 18px;
+    color: #534AB7;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.logo-sub {
+    font-size: 13px;
+    color: #888;
+}
+
+.welcome {
+    font-size: 15px;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+}
+
+.welcome span {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.field {
+    margin-bottom: 1.25rem;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.field input[type="text"],
+.field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    resize: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.field textarea {
+    height: 90px;
+    line-height: 1.6;
+}
+
+.field input[type="text"]:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: #534AB7;
+}
+
+.upload-box {
+    border: 1px dashed #2a2a2a;
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    background: #111;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.upload-box:hover {
+    border-color: #534AB7;
+}
+
+.upload-box i {
+    font-size: 22px;
+    color: #888;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.upload-box p {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.upload-box span {
+    font-size: 12px;
+    color: #555;
+}
+
+.upload-box input {
+    display: none;
+}
+
+.file-name {
+    font-size: 12px;
+    color: #7c6fe0;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 1.75rem;
+}
+
+.btn-logout {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    font-size: 13px;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    background: transparent;
+    color: #aaa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+
+.btn-logout:hover {
+    background: #222;
+}
+
+.btn-generate {
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    background: #534AB7;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+}
+
+.btn-generate:hover {
+    opacity: 0.88;
+}
+
+/* Buttons ke outer container ko handle karne ke liye (Optional but recommended) */
+.report-btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 0;
+  justify-content: flex-start;
+}
+
+/* Main Button Styling */
+.report-card-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button ke andar ka Text */
+.report-btn-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155; /* Cool slate gray */
+  letter-spacing: 0.3px;
+  z-index: 1;
+}
+
+/* Hover Effects (Jab mouse upar aaye) */
+.report-card-btn:hover {
+  background: #f8fafc;
+  border-color: #2563eb; /* Blue border on hover */
+  transform: translateY(-2px); /* Chota sa lift up effect */
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 
+              0 4px 6px -4px rgba(37, 99, 235, 0.1);
+}
+
+.report-card-btn:hover .report-btn-text {
+  color: #2563eb; /* Text blue ho jayega */
+}
+
+/* Active State (Jab click karein) */
+.report-card-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Ek choti si attractive dot line left side me dikhane ke liye */
+.report-card-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.report-card-btn:hover::before {
+  background: #2563eb; /* Hover karne par left side me blue strip dikhegi */
+}
