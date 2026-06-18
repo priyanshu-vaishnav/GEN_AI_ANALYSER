@@ -45,22 +45,22 @@ async function getUserReports(req,res){
 
 
   try{   
-     const report = await interviewReportModel.find({user:req.userId})
+     const reportData = await interviewReportModel.find({user:req.userId})
       
-     if(!report){
+     if(!reportData){
       res.status(200).json({
-        message:"no report found"
+        message:"no reportData found"
       })
      }
-     if(report.length >2){
+     if(reportData.length >2){
       res.status(200).json({
-        reports:report
+        reports:reportData
       })
      }
      
      res.status(200).json({
-      reports:[report],
-      reportLen :report.length
+      reports:reportData
+     
      })
     }
     catch(err)
