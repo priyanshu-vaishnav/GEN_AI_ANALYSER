@@ -74,14 +74,14 @@ async function login(req, res) {
 
 
 async function logout(req, res) {
-    res.clearCookie("token")
-
-    const blacklistToken = await blacklistTokenModel.create({
-        token: req.cookies.token,
-        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours
-    })
-    await blacklistToken.save()
-
+  
+  const blacklistToken = await blacklistTokenModel.create({
+    token: req.cookies.token,
+    expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours
+  })
+  await blacklistToken.save()
+  
+  res.clearCookie("token")
     res.status(200).json({
         msg:"Success logout"
     })      
