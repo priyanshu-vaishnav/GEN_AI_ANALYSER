@@ -60,8 +60,7 @@ export default function Dashboard() {
           try {
             const data = await GetMe();
             setUser(data); // Agar user logged in hai to uska data set karo
-            const reports = await getMyReports();
-            setReport(reports);
+          
           } catch (err) {
             setUser(null); // Agar error aaya to user ko null set karo (not authenticated)
           } finally {
