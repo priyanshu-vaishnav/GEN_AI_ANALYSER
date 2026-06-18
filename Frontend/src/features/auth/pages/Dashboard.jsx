@@ -165,11 +165,7 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* Navigation Button */}
-        <button className="btn-view-all" onClick={goto}>
-          View All Reports
-        </button>
-
+     
         <div className="reports-list" style={{ marginTop: "15px" }}>
           {report.reports ? (
             report.reports.map((r, i) => (
