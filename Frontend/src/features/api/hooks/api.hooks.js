@@ -3,7 +3,7 @@ import { AuthContext } from "../../auth/context/auth.context.jsx";
 
 import {
   GenerateReport,
-  getUserReports,
+  GetUserReports,
 } from "../../api/services/service.api.js";
 import { useNavigate } from "react-router-dom";
 
