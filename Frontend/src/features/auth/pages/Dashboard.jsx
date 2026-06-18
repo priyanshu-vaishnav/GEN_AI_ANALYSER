@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../hooks/auth.hooks.js";
 import{useEffect} from "react"
-import { GetMe } from "../../services/auth.api.js";
+
 import { useNavigate ,Link, Navigate} from "react-router-dom";
 import StatusScreen from "../components/StatusScreen.jsx";
 import { useApi } from "../../api/hooks/api.hooks.js";
@@ -11,7 +11,7 @@ import { useApi } from "../../api/hooks/api.hooks.js";
 import "./auth.dashboard.css";
 
 export default function Dashboard() {
-    const { handleLogout,user,error,success,loading,setLoading,setUser} = useAuth();
+    const { handleLogout,user,error,success,loading,setLoading,setUser,getMe} = useAuth();
     const {handleGenerateReport,getMyReports,report,setReport} = useApi();
     const [selfDescription, setSelfDescription] = useState("");
     const [jobDescription, setJobDescription] = useState("");
@@ -58,7 +58,7 @@ export default function Dashboard() {
         const fetchUser = async () => {
           setLoading(true);
           try {
-            const data = await GetMe();
+            const data = await getMe();
             const reportData = await getMyReports()
             setUser(data); // Agar user logged in hai to uska data set karo
             setReport(reportData)
