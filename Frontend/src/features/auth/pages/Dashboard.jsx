@@ -11,7 +11,7 @@ import { useApi } from "../../api/hooks/api.hooks.js";
 import "./auth.dashboard.css";
 
 export default function Dashboard() {
-    const { handleLogout,user,error,success,loading,setLoading} = useAuth();
+    const { handleLogout,user,error,success,loading,setLoading,setUser} = useAuth();
     const {handleGenerateReport,getMyReports,report,setReport} = useApi();
     const [selfDescription, setSelfDescription] = useState("");
     const [jobDescription, setJobDescription] = useState("");

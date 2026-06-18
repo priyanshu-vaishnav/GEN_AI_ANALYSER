@@ -61,6 +61,7 @@ export const useApi = () => {
       const reports = await GetUserReports();
       setReport(reports);
       setSuccess("Report fetched successfully!");
+      console.log(report)
     } catch (err) {
       setError(err.message);
     } finally {
