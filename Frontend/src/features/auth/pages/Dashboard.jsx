@@ -59,7 +59,10 @@ export default function Dashboard() {
           setLoading(true);
           try {
             const data = await GetMe();
+            const reportData = await getMyReports()
             setUser(data); // Agar user logged in hai to uska data set karo
+            setReport(reportData)
+
             console.log(report,"this is all report")
           
           } catch (err) {
