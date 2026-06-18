@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useApi } from "../hooks/api.hooks.js";
-import "./InterviewReport.css"; // CSS File Import ki hai yahan
+import "./Interviewreport.css"; // CSS File Import ki hai yahan
 
 export default function InterviewReport() {
   const { error, user, report, loading, success,setLoading } = useApi();
