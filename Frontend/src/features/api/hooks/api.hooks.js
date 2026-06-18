@@ -58,7 +58,7 @@ export const useApi = () => {
     setError(null);
     setSuccess(null);
     try {
-      const reports = await getUserReports();
+      const reports = await GetUserReports();
       setReport(reports);
       setSuccess("Report fetched successfully!");
     } catch (err) {
