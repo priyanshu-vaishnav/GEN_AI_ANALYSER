@@ -5,6 +5,7 @@ const authRoutes = require('../src/routes/auth.routes.js')
 const serviceRoute = require('./routes/interview.routes.js')
 
 const app = express();
+app.use(cookieParser()) 
 app.use(cors({
     origin: "https://gen-ai-analyser-nwas.vercel.app", // Aapke frontend ka exact URL (last me '/' mat lagana)
     credentials: true,               // Cookies aur headers allow karne ke liye yeh ZAROORI hai
@@ -12,7 +13,6 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json())
-app.use(cookieParser())  // ← ye line hai?
 
 
 
