@@ -8,7 +8,7 @@ export default function Home() {
       <nav className="hp-nav">
         <div className="hp-logo">
           <span className="hp-logo-dot" />
-        AI ANYLSYER ONLINE
+        RESUME ANALYSER
         </div>
         <div className="hp-nav-links">
           <a href="#process" className="hp-nav-link">How it works</a>
@@ -112,7 +112,7 @@ export default function Home() {
         <div className="hp-footer-panel">
           <h2>Your next interview deserves a debrief.</h2>
           <p>Open a case file in under a minute. No credit card, no waiting room.</p>
-          <Link to="/Register" className="hp-btn-primary">Open To Brief Anaylsis</Link>
+          <Link to="/Register" className="hp-btn-primary">Register</Link>
         </div>
       </section>
     </div>

@@ -15,13 +15,16 @@ export const AuthProvider = ({ children }) => {
   const [report, setReport] = useState(null);
   
 
+  /* 
+  @ uses -> run this when the components mounts
+  */
   useEffect(() => {
    
     const fetchUser = async () => {
       setLoading(true);
       try {
         const data = await GetMe();
-        const reportData = await GetUserReports();
+        const reportData = await GetUserReports(); // Using getreports function directly from auth.api.js
 
         setUser(data); 
         

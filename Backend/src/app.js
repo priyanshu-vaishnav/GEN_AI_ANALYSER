@@ -14,7 +14,9 @@ app.use(cors({
 }));
 app.use(express.json())
 
-
+app.get('/',(req,res)=>{
+    res.send("server is healthy & working properly")
+})
 
 app.use("/api/auth",authRoutes)
 app.use("/api/service",serviceRoute)
