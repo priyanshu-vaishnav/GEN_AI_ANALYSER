@@ -1,14 +1,22 @@
-async function generateToken(res, user) {
-  const token = jwt.sign(
-    { id: user._id },
-    process.env.JWSKEY,
-    { expiresIn: "24h" }
-  );
+const jwt = require("jsonwebtoken");
+const cookies = require("cookie-parser");
+const dotenv = require("dotenv");
+dotenv.config();
 
+async function genreateToken(res, user) {
+  const token = jwt.sign(
+    {
+      id: user._id,
+    },
+    process.env.JWSKEY,
+    { expiresIn: "24h" },
+  );
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // local pe false, prod pe true
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
   });
 }
+
+module.exports = genreateToken;
