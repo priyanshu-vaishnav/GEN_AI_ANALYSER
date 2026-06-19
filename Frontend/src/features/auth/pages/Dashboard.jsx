@@ -57,13 +57,13 @@ export default function Dashboard() {
    *@work : function handleGenerate() to generate a report
    */
   async function handleGenerate() {
+    setLoading(true);
     if (!selfDescription || !jobDescription || !resume) {
       alert("Please fill all fields and upload your resume.");
       return;
     }
 
     try {
-      setLoading(true);
       const newReport = await handleGenerateReport({
         selfDescription,
         resumeFile: resume,
