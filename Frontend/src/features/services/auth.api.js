@@ -44,7 +44,9 @@ export async function GetMe() {
       withCredentials: true,
     });
 
+
     return response.data;
+    
   } catch (err) {
     throw new Error(
       err.response?.data?.message || "Failed to fetch user details",

@@ -47,12 +47,13 @@ export default function Dashboard() {
 
   // Kisi specific report ko open karne ke liye
   function openReport(clickedId) {
-    console.log("cl");
+    
+    console.log(report)
 
     const userReports = report.reports.filter((r) => r._id === clickedId);
-
     setReport(userReports);
 
+    
     navigate("/interviewreport");
   }
 
@@ -86,7 +87,7 @@ export default function Dashboard() {
     const fetchUser = async () => {
       const data = await GetUserReports();
       setReport(data);
-      console.log(data, "sgdg");
+   
     };
 
     fetchUser();
@@ -183,7 +184,11 @@ export default function Dashboard() {
               </button>
             ))
           ) : (
+          <>
             <div>Not found</div>
+            
+            </>
+
           )}
         </div>
       </div>
