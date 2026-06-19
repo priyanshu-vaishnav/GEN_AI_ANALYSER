@@ -25,12 +25,12 @@ export const AuthProvider = ({ children }) => {
       try {
         const data = await GetMe();
         const reportData = await GetUserReports(); // Using getreports function directly from auth.api.js
+        
         if(!reportData || (reportData === null)){
           throw new Error(err.response?.data?.message || "failed");
         }
 
         setUser(data); 
-        
         setReport(reportData)
       } catch (err) {
         setUser(null); 

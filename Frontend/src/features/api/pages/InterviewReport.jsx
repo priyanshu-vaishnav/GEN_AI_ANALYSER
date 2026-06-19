@@ -1,81 +1,87 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { useApi } from "../hooks/api.hooks.js";
+import { useAuth } from "../../auth/hooks/auth.hooks.js";
 import "./Interviewreport.css"; // CSS File Import ki hai yahan
 
 export default function InterviewReport() {
-  const { error, user, report, loading, success,setLoading,setReport } = useApi();
+  const { error, user,  loading, success, setLoading } = useApi();
+  const { report , setReport } = useAuth();
+
   const [completedDays, setCompletedDays] = useState({});
   const [activeTechQuestion, setActiveTechQuestion] = useState(null);
   const [activeBehavQuestion, setActiveBehavQuestion] = useState(null);
- 
-    localStorage.setItem("reportData", JSON.stringify(report));
-   
-    const reportFromLS = JSON.parse(localStorage.getItem("reportData"))
+  
+  const reportFromLS = JSON.parse(localStorage.getItem("reportData"));
+  useEffect(() => {
     setReport(reportFromLS);
-    console.log(reportFromLS)
-
-
-
+  }, []);
 
   if (loading) {
     return (
       <div className="center-screen">
         <div className="spinner"></div>
-        <p style={{ marginTop: '16px', color: '#475569', fontWeight: '500' }}>Generating your customized dashboard...</p>
+        <p style={{ marginTop: "16px", color: "#475569", fontWeight: "500" }}>
+          Generating your customized dashboard...
+        </p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="center-screen" style={{ padding: '16px' }}>
+      <div className="center-screen" style={{ padding: "16px" }}>
         <div className="error-box">
-          <p style={{ fontWeight: '700', margin: 0 }}>⚠️ Error Occurred</p>
-          <p style={{ fontSize: '14px', marginTop: '4px', margin: 0 }}>{error?.message || "Failed to load data. Please try again."}</p>
+          <p style={{ fontWeight: "700", margin: 0 }}>⚠️ Error Occurred</p>
+          <p style={{ fontSize: "14px", marginTop: "4px", margin: 0 }}>
+            {error?.message || "Failed to load data. Please try again."}
+          </p>
         </div>
       </div>
     );
   }
 
-  const reportData = report?.report  ||report[0] ||report;
- 
+  const reportData = Array.isArray(report) ? report[0] : report?.report || report;
 
-  const { 
-    matchScore = 0, 
-    technicalQuestions = [], 
-    behaviourQuestions = [], 
-    skillsGap = [], 
-    dailyPreparePlans = [] 
+  const {
+    matchScore = 0,
+    technicalQuestions = [],
+    behaviourQuestions = [],
+    skillsGap = [],
+    dailyPreparePlans = [],
   } = reportData || {};
 
-  if (!report || !reportData || Object.keys(reportData).length === 0) {
+  if (!report || !reportData || Object.keys(reportData).length === 0 || (report === null)) {
     return (
       <div className="center-screen">
-        <p style={{ color: '#64748b', fontWeight: '500' }}>No report data available at the moment.</p>
+        <p style={{ color: "#64748b", fontWeight: "500" }}>
+          No report data available at the moment.
+        </p>
       </div>
     );
   }
 
   const toggleDay = (index) => {
-    setCompletedDays(prev => ({ ...prev, [index]: !prev[index] }));
+    setCompletedDays((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
   const getScoreClass = (score) => {
-    if (score >= 85) return 'score-high';
-    if (score >= 70) return 'score-med';
-    return 'score-low';
+    if (score >= 85) return "score-high";
+    if (score >= 70) return "score-med";
+    return "score-low";
   };
 
+  console.log(report)
   return (
     <div className="dashboard-container">
-      
       {/* Header Section */}
       <header className="dashboard-header">
         <div className="header-title">
           <h1>Interview Preparation Dashboard</h1>
-          {user && <p>Welcome back, {user.username || 'User'}!</p>}
-          <span className="subtitle">Dynamic analysis based on your profile and target job.</span>
+          {user && <p>Welcome back, {user.username || "User"}!</p>}
+          <span className="subtitle">
+            Dynamic analysis based on your profile and target job.
+          </span>
         </div>
         <div className={`score-badge ${getScoreClass(matchScore)}`}>
           <span className="score-num">{matchScore}%</span>
@@ -84,10 +90,8 @@ export default function InterviewReport() {
       </header>
 
       <div className="dashboard-grid">
-        
         {/* Left Column: Questions & Gaps */}
         <div className="left-column">
-          
           {/* Technical Questions */}
           <section className="dashboard-section">
             <h2 className="section-title">
@@ -104,28 +108,53 @@ export default function InterviewReport() {
 
                   return (
                     <div key={idx} className="accordion-item">
-                      <div 
-                        onClick={() => hasAnswer && setActiveTechQuestion(isOpen ? null : idx)}
+                      <div
+                        onClick={() =>
+                          hasAnswer &&
+                          setActiveTechQuestion(isOpen ? null : idx)
+                        }
                         className="accordion-header"
                       >
                         <span className="question-text">
-                          <strong style={{ color: '#2563eb', marginRight: '4px' }}>Q{idx + 1}.</strong> {q.question}
+                          <strong
+                            style={{ color: "#2563eb", marginRight: "4px" }}
+                          >
+                            Q{idx + 1}.
+                          </strong>{" "}
+                          {q.question}
                         </span>
-                        {hasAnswer && <span className={`arrow-icon ${isOpen ? 'open' : ''}`}>▼</span>}
+                        {hasAnswer && (
+                          <span
+                            className={`arrow-icon ${isOpen ? "open" : ""}`}
+                          >
+                            ▼
+                          </span>
+                        )}
                       </div>
-                      
+
                       {isOpen && hasAnswer && (
                         <div className="accordion-body">
                           {q.intention && (
                             <div className="meta-block">
-                              <span className="meta-label label-purple">Interviewer Intent:</span>
-                              <p className="meta-desc" style={{ fontStyle: 'italic' }}>{q.intention}</p>
+                              <span className="meta-label label-purple">
+                                Interviewer Intent:
+                              </span>
+                              <p
+                                className="meta-desc"
+                                style={{ fontStyle: "italic" }}
+                              >
+                                {q.intention}
+                              </p>
                             </div>
                           )}
                           {q.answer && (
                             <div className="meta-block">
-                              <span className="meta-label label-green">Suggested Answer Guide:</span>
-                              <p className="meta-desc whitespace-pre">{q.answer}</p>
+                              <span className="meta-label label-green">
+                                Suggested Answer Guide:
+                              </span>
+                              <p className="meta-desc whitespace-pre">
+                                {q.answer}
+                              </p>
                             </div>
                           )}
                         </div>
@@ -144,7 +173,9 @@ export default function InterviewReport() {
               Behavioural Questions ({behaviourQuestions.length})
             </h2>
             {behaviourQuestions.length === 0 ? (
-              <p className="italic-empty">No behavioural questions available.</p>
+              <p className="italic-empty">
+                No behavioural questions available.
+              </p>
             ) : (
               <div className="questions-list">
                 {behaviourQuestions.map((q, idx) => {
@@ -153,28 +184,53 @@ export default function InterviewReport() {
 
                   return (
                     <div key={idx} className="accordion-item">
-                      <div 
-                        onClick={() => hasAnswer && setActiveBehavQuestion(isOpen ? null : idx)}
+                      <div
+                        onClick={() =>
+                          hasAnswer &&
+                          setActiveBehavQuestion(isOpen ? null : idx)
+                        }
                         className="accordion-header"
                       >
                         <span className="question-text">
-                          <strong style={{ color: '#9333ea', marginRight: '4px' }}>Q{idx + 1}.</strong> {q.question}
+                          <strong
+                            style={{ color: "#9333ea", marginRight: "4px" }}
+                          >
+                            Q{idx + 1}.
+                          </strong>{" "}
+                          {q.question}
                         </span>
-                        {hasAnswer && <span className={`arrow-icon ${isOpen ? 'open' : ''}`}>▼</span>}
+                        {hasAnswer && (
+                          <span
+                            className={`arrow-icon ${isOpen ? "open" : ""}`}
+                          >
+                            ▼
+                          </span>
+                        )}
                       </div>
-                      
+
                       {isOpen && hasAnswer && (
                         <div className="accordion-body">
                           {q.intention && (
                             <div className="meta-block">
-                              <span className="meta-label label-purple">Interviewer Intent:</span>
-                              <p className="meta-desc" style={{ fontStyle: 'italic' }}>{q.intention}</p>
+                              <span className="meta-label label-purple">
+                                Interviewer Intent:
+                              </span>
+                              <p
+                                className="meta-desc"
+                                style={{ fontStyle: "italic" }}
+                              >
+                                {q.intention}
+                              </p>
                             </div>
                           )}
                           {q.answer && (
                             <div className="meta-block">
-                              <span className="meta-label label-green">STAR Approach Answer:</span>
-                              <p className="meta-desc whitespace-pre">{q.answer}</p>
+                              <span className="meta-label label-green">
+                                STAR Approach Answer:
+                              </span>
+                              <p className="meta-desc whitespace-pre">
+                                {q.answer}
+                              </p>
                             </div>
                           )}
                         </div>
@@ -210,18 +266,17 @@ export default function InterviewReport() {
               </div>
             )}
           </section>
-
         </div>
 
         {/* Right Column: Sticky Preparation Plan */}
         <div className="sticky-sidebar">
           <section className="dashboard-section">
-            <h2 className="section-title" style={{ marginBottom: '2px' }}>
+            <h2 className="section-title" style={{ marginBottom: "2px" }}>
               <span className="icon-wrapper bg-green">📅</span>
               Preparation Plan
             </h2>
             <p className="plan-subtitle">Track your dynamic daily progress</p>
-            
+
             {dailyPreparePlans.length === 0 ? (
               <p className="italic-empty">No preparation plan generated.</p>
             ) : (
@@ -230,21 +285,21 @@ export default function InterviewReport() {
                   const isDone = !!completedDays[idx];
 
                   return (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       onClick={() => toggleDay(idx)}
-                      className={`plan-card ${isDone ? 'completed' : ''}`}
+                      className={`plan-card ${isDone ? "completed" : ""}`}
                     >
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         checked={isDone}
-                        onChange={() => {}} 
+                        onChange={() => {}}
                         className="plan-checkbox"
                       />
                       <div className="plan-content">
                         <span className="day-tag">{plan.day}</span>
                         <h4 className="focus-title">{plan.focus}</h4>
-                        
+
                         {plan.tasks && plan.tasks.length > 0 && !isDone && (
                           <ul className="tasks-list">
                             {plan.tasks.map((task, tIdx) => (
@@ -260,7 +315,6 @@ export default function InterviewReport() {
             )}
           </section>
         </div>
-
       </div>
     </div>
   );

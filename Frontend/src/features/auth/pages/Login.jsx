@@ -52,7 +52,7 @@ function Login() {
           </button>
         </form>
         <p>
-          Already have an account? <Link to="/register">Register here</Link>
+          Haven't an account? <Link to="/register">Register here</Link>
         </p>
       </div>
     </>

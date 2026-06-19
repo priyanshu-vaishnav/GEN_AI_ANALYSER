@@ -1,23 +1,14 @@
-const jwt = require("jsonwebtoken");
-const cookies = require("cookie-parser");
-const dotenv = require("dotenv");
-dotenv.config();
-
-async function genreateToken(res, user) {
+async function generateToken(res, user) {
   const token = jwt.sign(
-    {
-      id: user._id,
-    },
+    { id: user._id },
     process.env.JWSKEY,
-    { expiresIn: "24h" },
+    { expiresIn: "24h" }
   );
 
   res.cookie("token", token, {
-  httpOnly: true,
-  secure: true,           // ✅ HTTPS required (production me zaruri)
-  sameSite: "None",       // ✅ Cross-origin requests ke liye (frontend alag domain pe ho to)
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-});
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // local pe false, prod pe true
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  });
 }
-
-module.exports = genreateToken;

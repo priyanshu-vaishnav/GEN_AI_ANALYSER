@@ -48,6 +48,8 @@ export default function Dashboard() {
     const userReports = report.reports.filter((r) => r._id === clickedId);
     setReport(userReports);
 
+    localStorage.setItem("reportData", JSON.stringify(userReports));
+   
     navigate("/interviewreport");
   }
 
@@ -127,7 +129,7 @@ export default function Dashboard() {
         </div>
 
         <p className="welcome">
-          Welcome back, <span>{user?.name || "Priyanshu"}</span> 👋
+          Welcome back, <span>{user?.username || "Priyanshu"}</span> 👋
         </p>
 
         <div className="field">
@@ -178,26 +180,15 @@ export default function Dashboard() {
         </div>
 
         <div className="reports-list" style={{ marginTop: "15px" }}>
-          {report.reports ? (
-            report.reports.map((r, i) => (
-              <button
-                key={r._id || i}
-                onClick={() => openReport(r._id)} // Direct ID pass kar di parameter me
-                style={{
-                  padding: "10px",
-                  margin: "5px",
-                  display: "block",
-                  width: "100%",
-                }}
-              >
-                <div>Report {i + 1}</div>
-              </button>
-            ))
-          ) : (
-            <>
-              <div style={{ backgroundColor: "white" }}>Not found</div>
-            </>
-          )}
+        {report?.reports ? (
+  report.reports.map((r, i) => (
+    <button key={r._id || i} onClick={() => openReport(r._id)}>
+      <div>Report {i + 1}</div>
+    </button>
+  ))
+) : (
+  <div>Not found</div>
+)}
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ export const useApi = () => {
         resumeFile,
         jobDescription,
       });
-      setReport(data); // ← pehle report set karo (object as-is, stringify mat karo)
+      setReport(data);
       setSuccess("Report generated successfully!");
       setTimeout(() => {
         navigate("/interviewReport"); // ← thodi der baad navigate karo

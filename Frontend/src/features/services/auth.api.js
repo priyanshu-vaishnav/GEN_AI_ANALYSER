@@ -32,6 +32,7 @@ export async function Login({ email, password }) {
 
 export async function Logout() {
   try {
+     localStorage.removeItem("reportData")
     await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
   } catch (err) {
     throw new Error(err.response?.data?.message || "Logout failed");

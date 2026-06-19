@@ -1,12 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
-import {
-  Register,
-  Login,
-  GetMe,
-  Logout,
-
-} from "../../services/auth.api.js";
+import { Register, Login, GetMe, Logout } from "../../services/auth.api.js";
 
 import { useNavigate } from "react-router-dom";
 
@@ -117,6 +111,9 @@ export const useAuth = () => {
     handleLogout,
     setLoading,
     setUser,
-    report,setReport
+    report,
+    setReport,
+    setError,
+    setSuccess,
   };
 };
