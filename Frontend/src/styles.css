@@ -7,12 +7,12 @@
 
 }
 .container {
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 /* Poori page pe */
 body {
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 html, body {
