@@ -95,6 +95,15 @@ export default function Dashboard() {
     fetchUser();
   }, []);
 
+    if (loading) {
+    return (
+      <div className="center-screen">
+        <div className="spinner"></div>
+        <p style={{ marginTop: '16px', color: '#475569', fontWeight: '500' }}>✨Generating your customized Reports...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="page">
       <div className="card1">
