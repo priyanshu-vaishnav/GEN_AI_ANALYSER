@@ -13,11 +13,11 @@ async function genreateToken(res, user) {
   );
 
   res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 din
-  });
+  httpOnly: true,
+  secure: true,           // ✅ HTTPS required (production me zaruri)
+  sameSite: "None",       // ✅ Cross-origin requests ke liye (frontend alag domain pe ho to)
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+});
 }
 
 module.exports = genreateToken;

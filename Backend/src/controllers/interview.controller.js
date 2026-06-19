@@ -47,6 +47,7 @@ async function getUserReports(req, res) {
 
     // FIX 1 & 2: Mongoose arrays ke liye '.length === 0' check karein aur 'return' lagayein
     if (reportData.length === 0) {
+      
       return res.status(200).json({
         success: true,
         message: "No reports found for this user.",
