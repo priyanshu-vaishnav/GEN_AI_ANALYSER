@@ -4,7 +4,7 @@ import { useApi } from "../hooks/api.hooks.js";
 import "./Interviewreport.css"; // CSS File Import ki hai yahan
 
 export default function InterviewReport() {
-  const { error, user, report, loading, success,setLoading } = useApi();
+  const { error, user, report, loading, success,setLoading,setReport } = useApi();
   const [completedDays, setCompletedDays] = useState({});
   const [activeTechQuestion, setActiveTechQuestion] = useState(null);
   const [activeBehavQuestion, setActiveBehavQuestion] = useState(null);
@@ -12,7 +12,7 @@ export default function InterviewReport() {
     localStorage.setItem("reportData", JSON.stringify(report));
    
     const reportFromLS = JSON.parse(localStorage.getItem("reportData"))
-    report(reportFromLS);
+    setReport(reportFromLS);
     console.log(reportFromLS)
 
 
