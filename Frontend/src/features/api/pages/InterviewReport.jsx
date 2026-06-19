@@ -11,9 +11,9 @@ export default function InterviewReport() {
  
     localStorage.setItem("reportData", JSON.stringify(report));
    
-    const reportData = JSON.parse(localStorage.getItem("reportData"))
-    report(reportData);
-    console.log(reportData)
+    const reportFromLS = JSON.parse(localStorage.getItem("reportData"))
+    report(reportFromLS);
+    console.log(reportFromLS)
 
 
 
