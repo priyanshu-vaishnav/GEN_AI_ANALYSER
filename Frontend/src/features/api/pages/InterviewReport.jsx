@@ -5,16 +5,18 @@ import { useAuth } from "../../auth/hooks/auth.hooks.js";
 import "./Interviewreport.css"; // CSS File Import ki hai yahan
 
 export default function InterviewReport() {
-  const { error, user,  loading, success, setLoading } = useApi();
-  const { report , setReport } = useAuth();
+  const { error, user, loading, success, setLoading } = useApi();
+  const { report, setReport } = useAuth();
 
   const [completedDays, setCompletedDays] = useState({});
   const [activeTechQuestion, setActiveTechQuestion] = useState(null);
   const [activeBehavQuestion, setActiveBehavQuestion] = useState(null);
-  
+
   const reportFromLS = JSON.parse(localStorage.getItem("reportData"));
   useEffect(() => {
-    setReport(reportFromLS);
+    if (!report) {
+      setReport(reportFromLS);
+    }
   }, []);
 
   if (loading) {
@@ -41,7 +43,9 @@ export default function InterviewReport() {
     );
   }
 
-  const reportData = Array.isArray(report) ? report[0] : report?.report || report;
+  const reportData = Array.isArray(report)
+    ? report[0]
+    : report?.report || report;
 
   const {
     matchScore = 0,
@@ -51,7 +55,7 @@ export default function InterviewReport() {
     dailyPreparePlans = [],
   } = reportData || {};
 
-  if (!report || !reportData|| (report === null)) {
+  if (!report || !reportData) {
     return (
       <div className="center-screen">
         <p style={{ color: "#64748b", fontWeight: "500" }}>
@@ -71,7 +75,7 @@ export default function InterviewReport() {
     return "score-low";
   };
 
-  console.log(report)
+  console.log(report);
   return (
     <div className="dashboard-container">
       {/* Header Section */}
