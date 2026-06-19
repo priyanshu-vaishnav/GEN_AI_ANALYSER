@@ -10,6 +10,11 @@ export default function InterviewReport() {
   const [activeBehavQuestion, setActiveBehavQuestion] = useState(null);
  
     localStorage.setItem("reportData", JSON.stringify(report));
+   
+    const reportData = JSON.parse(localStorage.getItem("reportData"))
+    report(reportData);
+    console.log(reportData)
+
 
 
 
