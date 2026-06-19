@@ -93,7 +93,7 @@ export default function Dashboard() {
         {/* Logo Header */}
         <div className="logo-row">
           <div className="logo-icon">
-            <i className="ti ti-file-text"></i>
+           <img src = "/aiLogo.png" alt="" srcset="" className="logo-icon" />
           </div>
           <div>
             <div className="logo-text">Interview Prep</div>
