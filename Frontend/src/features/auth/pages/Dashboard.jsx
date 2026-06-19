@@ -6,7 +6,6 @@ import StatusScreen from "../components/StatusScreen.jsx";
 import "./auth.dashboard.css";
 import { GetUserReports } from "../../services/auth.api.js";
 
-
 export default function Dashboard() {
   // Auth states aur functions
   const {
@@ -29,7 +28,6 @@ export default function Dashboard() {
   const [resume, setResume] = useState(null);
   const [fileName, setFileName] = useState("");
 
-
   const navigate = useNavigate();
 
   /**
@@ -44,7 +42,7 @@ export default function Dashboard() {
   }
 
   /**
-   *@work : when the reports is fetched , navigate to interview page after click on reports 
+   *@work : when the reports is fetched , navigate to interview page after click on reports
    */
   function openReport(clickedId) {
     const userReports = report.reports.filter((r) => r._id === clickedId);
@@ -86,20 +84,22 @@ export default function Dashboard() {
    *
    */
   useEffect(() => {
-   
     const fetchUser = async () => {
       const data = await GetUserReports();
+      localStorage.setItem("reportData", JSON.stringify(report));
       setReport(data);
     };
 
     fetchUser();
   }, []);
 
-    if (loading) {
+  if (loading) {
     return (
       <div className="center-screen">
         <div className="spinner"></div>
-        <p style={{ marginTop: '16px', color: '#475569', fontWeight: '500' }}>✨Generating your customized Reports...</p>
+        <p style={{ marginTop: "16px", color: "#475569", fontWeight: "500" }}>
+          ✨Generating your customized Reports...
+        </p>
       </div>
     );
   }
@@ -113,7 +113,12 @@ export default function Dashboard() {
         {/* Logo Header */}
         <div className="logo-row">
           <div className="logo-icon">
-           <img src="/icons/aiLogo.png" alt="" srcset="" className="logo-icon" />
+            <img
+              src="/icons/aiLogo.png"
+              alt=""
+              srcset=""
+              className="logo-icon"
+            />
           </div>
           <div>
             <div className="logo-text">Interview Prep</div>
@@ -121,12 +126,10 @@ export default function Dashboard() {
           </div>
         </div>
 
-       
         <p className="welcome">
           Welcome back, <span>{user?.name || "Priyanshu"}</span> 👋
         </p>
 
-        
         <div className="field">
           <label>Self Introduction</label>
           <textarea
@@ -136,7 +139,6 @@ export default function Dashboard() {
           />
         </div>
 
-      
         <div className="field">
           <label>Resume</label>
           <div
@@ -166,7 +168,6 @@ export default function Dashboard() {
           />
         </div>
 
-      
         <div className="btn-row">
           <button className="btn-logout" onClick={handleLogout}>
             <i className="ti ti-logout"></i> Logout

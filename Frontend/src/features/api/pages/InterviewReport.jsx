@@ -10,6 +10,7 @@ export default function InterviewReport() {
   const [activeBehavQuestion, setActiveBehavQuestion] = useState(null);
 
 
+
   if (loading) {
     return (
       <div className="center-screen">
