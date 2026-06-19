@@ -260,13 +260,14 @@
   background: #2563eb; /* Hover karne par left side me blue strip dikhegi */
 }
 
-.report-list{
+.reports-list{
   
     display: flex;
+    
 
 
 }
-.report-list button{
+.reports-list button{
  width: 50%;
  border-radius: 10px;
 
