@@ -29,10 +29,12 @@ export default function Dashboard() {
   const [resume, setResume] = useState(null);
   const [fileName, setFileName] = useState("");
 
-  // Fix 1: Variable name lowercase 'navigate' kiya
+
   const navigate = useNavigate();
 
-  // Resume Upload Handler
+  /**
+   * @work :resume uploader function when the resume is loaded
+   */
   function handleFileChange(e) {
     const file = e.target.files[0];
     if (file) {
@@ -41,7 +43,9 @@ export default function Dashboard() {
     }
   }
 
-  // Kisi specific report ko open karne ke liye
+  /**
+   *@work : when the reports is fetched , navigate to interview page after click on reports 
+   */
   function openReport(clickedId) {
     const userReports = report.reports.filter((r) => r._id === clickedId);
     setReport(userReports);
@@ -49,7 +53,9 @@ export default function Dashboard() {
     navigate("/interviewreport");
   }
 
-  // Nayi Report generate karne ke liye
+  /**
+   *@work : function handleGenerate() to generate a report
+   */
   async function handleGenerate() {
     if (!selfDescription || !jobDescription || !resume) {
       alert("Please fill all fields and upload your resume.");
@@ -75,6 +81,10 @@ export default function Dashboard() {
     }
   }
 
+  /**
+   * @Work : when the components is loaded getting userReports
+   *
+   */
   useEffect(() => {
    
     const fetchUser = async () => {
@@ -102,12 +112,12 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Welcome Section */}
+       
         <p className="welcome">
           Welcome back, <span>{user?.name || "Priyanshu"}</span> 👋
         </p>
 
-        {/* Self Introduction Field */}
+        
         <div className="field">
           <label>Self Introduction</label>
           <textarea
@@ -117,7 +127,7 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Resume Upload Field */}
+      
         <div className="field">
           <label>Resume</label>
           <div
@@ -138,7 +148,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Job Description Field */}
         <div className="field">
           <label>Job Description</label>
           <textarea
@@ -148,7 +157,7 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Action Buttons */}
+      
         <div className="btn-row">
           <button className="btn-logout" onClick={handleLogout}>
             <i className="ti ti-logout"></i> Logout
