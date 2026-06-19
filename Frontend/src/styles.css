@@ -6,6 +6,14 @@
    
 
 }
+.container {
+  overflow-y: hidden;
+}
+
+/* Poori page pe */
+body {
+  overflow-y: hidden;
+}
 
 html, body {
     height: 100vh;
