@@ -40,20 +40,11 @@ export default function Dashboard() {
     }
   }
 
-  // All Reports page par jaane ke liye
-  function goto() {
-    navigate("/interviewreport");
-  }
-
   // Kisi specific report ko open karne ke liye
   function openReport(clickedId) {
-    
-  
-
     const userReports = report.reports.filter((r) => r._id === clickedId);
     setReport(userReports);
 
-    
     navigate("/interviewreport");
   }
 
@@ -84,10 +75,10 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
+   
     const fetchUser = async () => {
       const data = await GetUserReports();
       setReport(data);
-   
     };
 
     fetchUser();
@@ -166,7 +157,6 @@ export default function Dashboard() {
           </button>
         </div>
 
-     
         <div className="reports-list" style={{ marginTop: "15px" }}>
           {report.reports ? (
             report.reports.map((r, i) => (
@@ -184,11 +174,9 @@ export default function Dashboard() {
               </button>
             ))
           ) : (
-          <>
-            <div>Not found</div>
-            
+            <>
+              <div style={{ backgroundColor: "white" }}>Not found</div>
             </>
-
           )}
         </div>
       </div>

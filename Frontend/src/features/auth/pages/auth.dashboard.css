@@ -259,3 +259,14 @@
 .report-card-btn:hover::before {
   background: #2563eb; /* Hover karne par left side me blue strip dikhegi */
 }
+
+.report-list{
+  
+    display: flex;
+
+
+}
+.report-list button{
+ 
+    background-color: green;
+}
