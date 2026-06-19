@@ -48,7 +48,7 @@ export default function Dashboard() {
   // Kisi specific report ko open karne ke liye
   function openReport(clickedId) {
     
-    console.log(report)
+  
 
     const userReports = report.reports.filter((r) => r._id === clickedId);
     setReport(userReports);
