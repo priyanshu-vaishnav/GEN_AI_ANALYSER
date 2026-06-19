@@ -267,6 +267,8 @@
 
 }
 .report-list button{
- 
-    background-color: green;
+ width: 50%;
+ border-radius: 10px;
+
+    background-color: rgb(77, 94, 155);
 }
