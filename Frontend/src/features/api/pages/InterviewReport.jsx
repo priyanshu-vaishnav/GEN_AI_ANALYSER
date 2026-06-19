@@ -8,6 +8,8 @@ export default function InterviewReport() {
   const [completedDays, setCompletedDays] = useState({});
   const [activeTechQuestion, setActiveTechQuestion] = useState(null);
   const [activeBehavQuestion, setActiveBehavQuestion] = useState(null);
+ 
+    localStorage.setItem("reportData", JSON.stringify(report));
 
 
 

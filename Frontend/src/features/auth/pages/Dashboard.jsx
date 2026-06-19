@@ -86,7 +86,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchUser = async () => {
       const data = await GetUserReports();
-      localStorage.setItem("reportData", JSON.stringify(report));
+    
       setReport(data);
     };
 
