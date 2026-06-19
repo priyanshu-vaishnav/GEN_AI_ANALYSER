@@ -5,7 +5,7 @@ import { useApi } from "../../api/hooks/api.hooks.js";
 import StatusScreen from "../components/StatusScreen.jsx";
 import "./auth.dashboard.css";
 import { GetUserReports } from "../../services/auth.api.js";
-import {aiLogo} from "../../../../public/icons/aiLogo.png"
+
 
 export default function Dashboard() {
   // Auth states aur functions
@@ -94,7 +94,7 @@ export default function Dashboard() {
         {/* Logo Header */}
         <div className="logo-row">
           <div className="logo-icon">
-           <img src = {aiLogo} alt="" srcset="" className="logo-icon" />
+           <img src="/icons/aiLogo.png" alt="" srcset="" className="logo-icon" />
           </div>
           <div>
             <div className="logo-text">Interview Prep</div>
