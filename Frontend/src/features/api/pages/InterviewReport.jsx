@@ -51,7 +51,7 @@ export default function InterviewReport() {
     dailyPreparePlans = [],
   } = reportData || {};
 
-  if (!report || !reportData || Object.keys(reportData).length === 0 || (report === null)) {
+  if (!report || !reportData|| (report === null)) {
     return (
       <div className="center-screen">
         <p style={{ color: "#64748b", fontWeight: "500" }}>
