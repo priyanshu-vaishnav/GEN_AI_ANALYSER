@@ -1,4 +1,5 @@
 const { GoogleGenAI, Type } = require("@google/genai");
+const {PDFParse} = require("pdf-parse")
 const dotenv = require("dotenv")
 dotenv.config();
 const ai = new GoogleGenAI({
@@ -78,12 +79,39 @@ const interviewReportSchema = {
 
 // 2. Generate Function
 async function generateInterviewReport({ selfDescription, resume, jobDescription }) {
+
+
+    /**@method : Pdf Parse method jo pdf extact krega  */
+    let resumeText = "";
+
+        // 1. Check karein ki resume ek URL hai ya nahi
+        if (resume && resume.startsWith('http')) {
+            console.log("Fetching and parsing PDF using native fetch:", resume);
+            
+            // Native Node.js fetch use kiya
+            const response = await fetch(resume);
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch PDF: ${response.statusText}`);
+            }
+
+            // Response ko arrayBuffer me convert kiya aur fir Node.js Buffer banaya
+            const arrayBuffer = await response.arrayBuffer();
+            const pdfBuffer = Buffer.from(arrayBuffer);
+            
+            // pdf-parse se text nikala
+            const parsedPdf = await new PDFParse(pdfBuffer);
+            resumeText = parsedPdf.text; 
+        } else {
+            resumeText = resume;
+        }
+    
     const prompt = `You are an expert career coach and interviewer. 
     Analyze the candidate's self-description, resume, and the target job description provided below.
     Generate a highly accurate, customized interview preparation report strictly following the JSON schema layout.
 
     Candidate Self-Description: ${selfDescription}
-    Candidate Resume: ${resume}
+    Candidate Resume: ${resumeText}
     Target Job Description: ${jobDescription}`;
 
     try {
@@ -97,10 +125,12 @@ async function generateInterviewReport({ selfDescription, resume, jobDescription
         });
 
         return JSON.parse(response.text);
-    } catch (error) {
+    }
+  catch (error) {
         console.error("Error generating structured report:", error);
         throw error;
     }
+
 }
 
 module.exports = { generateInterviewReport };

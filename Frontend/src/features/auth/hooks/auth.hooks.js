@@ -17,6 +17,7 @@ export const useAuth = () => {
     setSuccess,
     report,
     setReport,
+    reportsCount
   } = context;
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ export const useAuth = () => {
     try {
       const data = await Login({ email, password });
       setUser(data.user); // API se jo user object aaya use set karein
-      setSuccess("Registration successful!");
+      setSuccess("Login successful!");
       navigate("/dashboard"); // Login ke baad dashboard pe le jao
     } catch (err) {
       // Ab aapko yahan backend waala "invalid credentials" message dikhega
@@ -85,9 +86,7 @@ export const useAuth = () => {
     setSuccess(null);
     try {
       const data = await GetMe();
-
       setUser(data);
-
       setSuccess("Refresh successful!");
     } catch (err) {
       setError(err.message);
@@ -115,5 +114,6 @@ export const useAuth = () => {
     setReport,
     setError,
     setSuccess,
+    reportsCount
   };
 };

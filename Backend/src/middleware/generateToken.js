@@ -11,7 +11,11 @@ async function genreateToken(res, user) {
     process.env.JWSKEY,
     { expiresIn: "24h" },
   );
- res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true })
-}
 
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+  });
+}
 module.exports = genreateToken;

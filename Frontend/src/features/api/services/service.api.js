@@ -15,9 +15,7 @@ export async function GenerateReport({
     formData.append("jobDescription", jobDescription);
     const response = await axios.post(
       `${API_URL}/service/aireport`,
-      { selfDescription, 
-        resume: resumeFile,
-         jobDescription },
+    formData,
       {
         withCredentials: true,
       },
@@ -27,7 +25,3 @@ export async function GenerateReport({
     throw new Error(err.response?.data?.message || "Report generation failed");
   }
 }
-
-
-
-

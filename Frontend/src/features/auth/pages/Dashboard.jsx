@@ -11,16 +11,13 @@ export default function Dashboard() {
   const {
     handleLogout,
     user,
-    error,
-    success,
-    loading,
-    setLoading,
     report,
     setReport,
   } = useAuth();
 
+  
   // API states aur functions
-  const { handleGenerateReport } = useApi();
+  const { handleGenerateReport,loading,error,success ,setLoading} = useApi();
 
   // Local Form States
   const [selfDescription, setSelfDescription] = useState("");
@@ -56,11 +53,16 @@ export default function Dashboard() {
   /**
    *@work : function handleGenerate() to generate a report
    */
-  async function handleGenerate() {
+  async function handleGenerate(e) {
+    e.preventDefault();
     setLoading(true);
+
+   
     if (!selfDescription || !jobDescription || !resume) {
       alert("Please fill all fields and upload your resume.");
+      setLoading(false)
       return;
+      
     }
 
     try {
@@ -72,7 +74,7 @@ export default function Dashboard() {
 
       // Agar instant redirect karna chahein naye report par:
       if (newReport) {
-        navigate("/interviewreport", { state: { selectedReport: newReport } });
+        navigate("/interviewreport");
       }
     } catch (err) {
       console.error("Error generating report:", err);
@@ -174,7 +176,7 @@ export default function Dashboard() {
           <button className="btn-logout" onClick={handleLogout}>
             <i className="ti ti-logout"></i> Logout
           </button>
-          <button className="btn-generate" onClick={handleGenerate}>
+          <button className="btn-generate" onClick={(e)=>handleGenerate(e)}>
             <i className="ti ti-sparkles"></i> Generate Report
           </button>
         </div>

@@ -75,7 +75,7 @@ export default function InterviewReport() {
     return "score-low";
   };
 
-  console.log(report);
+  
   return (
     <div className="dashboard-container">
       {/* Header Section */}

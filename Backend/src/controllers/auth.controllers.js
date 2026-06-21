@@ -12,7 +12,7 @@ async function register(req, res) {
         const { username, email, password } = req.body;
         if (!username || !email || !password
         ) {
-            return res.status(300).json({ msg: "please enter all the details" })
+            return res.status(300).json({ message: "please enter all the details" })
         }
         const user = await userModel.create({
             username,
@@ -43,31 +43,31 @@ async function login(req, res) {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ msg: "please enter all the details" });
+      return res.status(400).json({ message: "please enter all the details" });
     }
     
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(400).json({ msg: "invalid credentials" });
+      return res.status(400).json({ message: "invalid credentials" });
     }   
 
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(400).json({ msg: "invalid credentials" });
+      return res.status(400).json({ message: "invalid credentials" });
     }
 
     generateToken(res, user);
 
-    // Agar hook me user state set karni hai, to msg ke sath user data bhi bhejein
+    // Agar hook me user state set karni hai, to message ke sath user data bhi bhejein
     res.status(200).json({
-      msg: "Success login",
+      message: "Success login",
       user: user // Taaki setUser(data.user) kar sakein
     });
 
   } catch (err) {
     // Server crash hone par exact system message bhejein (err.message)
     res.status(500).json({
-      msg: err.message || "Internal Server Error"
+      message: err.message || "Internal Server Error"
     });
   }
 }
@@ -83,7 +83,7 @@ async function logout(req, res) {
   
   res.clearCookie("token")
     res.status(200).json({
-        msg:"Success logout"
+        message:"Success logout"
     })      
 
 }
@@ -91,10 +91,14 @@ async function logout(req, res) {
 
 async function getMe(req,res){
 
+  const totalReports = await interviewReportModel.countDocuments()
+
+  try{
     const user = await userModel.findById(req.userId);
     if(!user){
         return res.status(300).json({
-            msg:"no user found"
+            message:"no user found",
+             totalReports: totalReports
         })
     }
     const isAnyReport = await interviewReportModel.find({ user: req.userId });
@@ -102,9 +106,16 @@ async function getMe(req,res){
     res.status(200).json({
         username : user.username,
         email :user.email,
+       totalReports: totalReports
      
 
     })
+  }
+  catch(err){
+    return res.status(500).json({
+      message:"something went wrong"
+    })
+  }
 }
 
 module.exports = { register, getMe , login, logout}

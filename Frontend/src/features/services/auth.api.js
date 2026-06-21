@@ -12,7 +12,7 @@ export async function Register({ username, email, password }) {
     );
     return response.data; // Yeh line miss thi!
   } catch (err) {
-    throw new Error(err.response?.data?.msg || "Registration failed");
+    throw new Error(err.response?.data?.message || "Registration failed");
   }
 }
 
@@ -26,7 +26,7 @@ export async function Login({ email, password }) {
     return response.data; // Yeh line bhi miss thi!
   } catch (err) {
     // Controller se aane waala { msg: "..." } yahan se hook tak pass hoga
-    throw new Error(err.response?.data?.msg || "Login failed");
+    throw new Error(err.response?.data?.message || "Login failed");
   }
 }
 

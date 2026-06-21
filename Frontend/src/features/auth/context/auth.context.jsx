@@ -5,37 +5,42 @@ import { GetUserReports } from "../../services/auth.api.js";
 
 export const AuthContext = createContext();
 
-
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [report, setReport] = useState(null);
-  
+  const [reportsCount, setReportsCount] = useState(null);
 
   /* 
   @ uses -> run this when the components mounts
   */
   useEffect(() => {
-   
     const fetchUser = async () => {
       setLoading(true);
       try {
         const data = await GetMe();
+      
+       
         const reportData = await GetUserReports(); // Using getreports function directly from auth.api.js
-        
-        if(!reportData || (reportData === null)){
+        if (!reportData || reportData === null) {
           throw new Error(err.response?.data?.message || "failed");
+            
         }
 
-        setUser(data); 
-        setReport(reportData)
+        setUser(data);
+       
+
+        setReport(reportData);
       } catch (err) {
-        setUser(null); 
+          console.log(err.message)
+        setUser(null);
+          
       } finally {
         setLoading(false);
+        
+       
       }
     };
 
@@ -55,6 +60,7 @@ export const AuthProvider = ({ children }) => {
         setSuccess,
         report,
         setReport,
+        reportsCount,
       }}
     >
       {children}
