@@ -23,6 +23,7 @@ function Register() {
     <div className="form-box">
         <StatusScreen loading={loading} error={error} success={success} />
       <h2>Register</h2>
+      <p>Welcome</p>
       <form>
         <div className="form-group">
           <label htmlFor="username">Username</label>
