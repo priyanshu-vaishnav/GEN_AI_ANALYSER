@@ -4,9 +4,14 @@ import { useAuth } from "../hooks/auth.hooks";
 import "./auth.forms.css";
 import { useState } from "react";
 import StatusScreen from "../components/StatusScreen.jsx";
+import ForgetPassword from "../components/ForgetPassword.jsx";
+import axios from "axios"
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isBlocked,setIsBlocked] = useState(true)
+
   const { user, loading, handleLogin, error, success } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +19,23 @@ function Login() {
   };
 
   
+  const openModal = ()=>{
+    console.log('press');
+   
+    setIsBlocked(false)
+      
+  }
+
+  const changePassword = async(password,confirmPassword)=>{
+
+    if(password !== confirmPassword){
+      console.log(password,confirmPassword)
+      return;
+    }
+       
+      const response = await axios.put("http://localhost:3000/api/auth/forgetpassword",{email,password})
+      console.log(response)
+  }
 
 
   return (
@@ -21,7 +43,7 @@ function Login() {
       <div className="form-box">
         <StatusScreen loading={loading} error={error} success={success} />
         <h3>Login</h3>
-        <form>
+       {isBlocked?<form>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -51,7 +73,45 @@ function Login() {
           >
             Login
           </button>
-        </form>
+          <div style={{marginTop:'10px'}}>
+          <button onClick={openModal}   className="btn btn-danger m-0 p-0" style={{backgroundColor:"#16181d",border:"none",}}>forget my password?</button>
+          </div>
+          
+        </form>:
+            <div>
+              <label htmlFor="email">Email</label>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter email"
+            />
+             <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter password"
+            />
+          </div>
+             <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter password"
+            />
+          </div>
+
+              <button onClick={()=>changePassword(password,confirmPassword)}>submit</button>
+            </div>
+          } 
+        
         <p>
           Haven't an account? <Link to="/register">Register here</Link>
         </p>

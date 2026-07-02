@@ -30,7 +30,8 @@ export const useAuth = () => {
       setUser(data.user);
       setSuccess("Registration successful!");
     } catch (err) {
-      setError(err.message);
+      const message = err.response?.data?.errors?.[0]?.msg || err.response?.data?.message || "Registration failed"
+      setError(message)   // 👈 throw nahi, setError — taaki UI me dikhe
     } finally {
       setLoading(false);
       setTimeout(() => {
@@ -38,7 +39,7 @@ export const useAuth = () => {
         setSuccess(null);
       }, 2000);
     }
-  };
+};
 
   const handleLogin = async ({ email, password }) => {
     setLoading(true);

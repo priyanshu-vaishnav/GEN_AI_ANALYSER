@@ -10,9 +10,9 @@ export async function Register({ username, email, password }) {
       { username, email, password },
       { withCredentials: true },
     );
-    return response.data; // Yeh line miss thi!
+    return response.data;
   } catch (err) {
-    throw new Error(err.response?.data?.message || "Registration failed");
+    throw err   
   }
 }
 
