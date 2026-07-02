@@ -190,7 +190,8 @@ export default function Dashboard() {
   ))
 ) : (
   <div>Not found</div>
-)}
+)} <div><button>
+  want to get auto suggestion?</button></div>
         </div>
       </div>
     </div>
