@@ -11,8 +11,10 @@ function Login() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isBlocked,setIsBlocked] = useState(true)
+  const [logoutError,setLogoutError] =useState(null)
 
-  const { user, loading, handleLogin, error, success } = useAuth();
+
+  const { user, loading, handleLogin, error, success,setError ,setSuccess} = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin({ email, password });
@@ -32,9 +34,18 @@ function Login() {
       console.log(password,confirmPassword)
       return;
     }
-       
+       try{
       const response = await axios.put("http://localhost:3000/api/auth/forgetpassword",{email,password})
-      console.log(response)
+      setSuccess(response.data.message)
+       }catch(err){
+        
+        setError(err.response.data.message)
+       }
+       finally{
+        setError("")
+        setSuccess("")
+       }
+      
   }
 
 
